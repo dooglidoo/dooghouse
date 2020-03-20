@@ -1,53 +1,32 @@
 import * as React from 'react';
-import { Image, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { ScrollView } from 'react-native-gesture-handler';
+import { Platform, StyleSheet, Text, View } from 'react-native';
 import * as WebBrowser from 'expo-web-browser';
-
-import { MonoText } from '../components/StyledText';
+import Button from '../components/Button';
 
 export default function HomeScreen() {
   return (
     <View style={styles.container}>
-      <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
-        <View style={styles.welcomeContainer}>
-          <Image
-            source={
-              __DEV__
-                ? require('../assets/images/robot-dev.png')
-                : require('../assets/images/robot-prod.png')
-            }
-            style={styles.welcomeImage}
-          />
+        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+            <Text numberOfLines={1} style={styles.headerText}>The Dooghouse</Text>
         </View>
-
-        <View style={styles.getStartedContainer}>
-          <DevelopmentModeNotice />
-
-          <Text style={styles.getStartedText}>Open up the code for this screen:</Text>
-
-          <View style={[styles.codeHighlightContainer, styles.homeScreenFilename]}>
-            <MonoText>screens/HomeScreen.js</MonoText>
-          </View>
-
-          <Text style={styles.getStartedText}>
-            Change any of the text, save the file, and your app will automatically reload.
-          </Text>
+        <View style={{ flex: 2, justifyContent: 'center', alignItems: 'center', backgroundColor: 'blue'}}>
+            <Text style={{color: 'white', fontWeight: 'bold'}}>Or is it a douche house?</Text>
+            <Button 
+                onPress={() => console.log('You think its douchey')}
+                text={'Yes, very douchey'}
+                backgroundColor={'red'}
+            />
+            <Button 
+                onPress={() => console.log('You definitely do not think its douchey')}
+                text={'No way man'}
+                backgroundColor={'white'}
+            />
+            <Button 
+                onPress={() => console.log('You might just be a loser make up your mind')}
+                text={'Who knows, cow man'}
+                backgroundColor={'gray'}
+            />
         </View>
-
-        <View style={styles.helpContainer}>
-          <TouchableOpacity onPress={handleHelpPress} style={styles.helpLink}>
-            <Text style={styles.helpLinkText}>Help, it didn’t automatically reload!</Text>
-          </TouchableOpacity>
-        </View>
-      </ScrollView>
-
-      <View style={styles.tabBarInfoContainer}>
-        <Text style={styles.tabBarInfoText}>This is a tab bar. You can edit it in:</Text>
-
-        <View style={[styles.codeHighlightContainer, styles.navigationFilename]}>
-          <MonoText style={styles.codeHighlightText}>navigation/BottomTabNavigator.js</MonoText>
-        </View>
-      </View>
     </View>
   );
 }
@@ -93,6 +72,10 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
+  },
+  headerText: {
+    fontSize: 28,
+    color: 'green',
   },
   developmentModeText: {
     marginBottom: 20,
